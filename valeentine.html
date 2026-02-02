@@ -1,0 +1,314 @@
+>><!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Arika 💜</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --glow: 0 0 15px #ff4fd8, 0 0 30px #9b5cff;
+  --primary: #ff4fd8;
+  --bar-bg: rgba(43, 0, 64, 0.8); /* Darker contrast for bars */
+}
+
+*{ margin:0; padding:0; box-sizing:border-box; font-family: 'Poppins', sans-serif; }
+
+body {
+  background: #0f001a;
+  background: radial-gradient(circle, #1a002b 0%, #000000 100%);
+  color: white; overflow: hidden; height: 100vh;
+}
+
+/* GLOWING HEARTS */
+.heart {
+  position: fixed; bottom: -50px; font-size: 22px;
+  animation: floatUp linear infinite; opacity: 0.7; z-index: 1;
+  text-shadow: var(--glow);
+}
+@keyframes floatUp {
+  0% { transform: translateY(0) scale(1); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
+}
+
+.center {
+  height: 100vh; display: flex; justify-content: center;
+  align-items: center; flex-direction: column; padding: 20px; text-align: center;
+}
+.hidden { display: none !important; }
+
+/* --- 3D SHAKING LOADING BAR --- */
+.loader-card {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 40px; border-radius: 30px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 79, 216, 0.3);
+  box-shadow: var(--glow);
+}
+
+.loader-box {
+  width: 280px; background: rgba(255,255,255,0.1);
+  border-radius: 50px; height: 20px; margin: 25px 0; overflow: hidden;
+  position: relative; border: 1px solid rgba(255,255,255,0.2);
+}
+.loader {
+  height: 100%; width: 0%;
+  background: linear-gradient(90deg, #ff4fd8, #9b5cff);
+  box-shadow: 0 0 20px #ff4fd8;
+}
+
+.shake-screen { animation: violentShake 0.08s infinite; }
+@keyframes violentShake {
+  0% { transform: translate(3px, 3px) rotate(0deg); }
+  25% { transform: translate(-3px, -3px) rotate(-1deg); }
+  50% { transform: translate(-5px, 0px) rotate(1deg); }
+  75% { transform: translate(5px, 3px) rotate(-1deg); }
+  100% { transform: translate(0px, -3px) rotate(0deg); }
+}
+
+.warning-pulse {
+  display: inline-block;
+  animation: pulseShake 1.2s infinite ease-in-out;
+  color: #ff4fd8; font-weight: bold; font-size: 22px; 
+  text-shadow: var(--glow);
+}
+@keyframes pulseShake {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.25) rotate(3deg); }
+  75% { transform: scale(1.15) rotate(-3deg); }
+}
+
+/* --- UPDATED GLOWING BARS (DIFFERENT COLOR) --- */
+.bar {
+  background: var(--bar-bg); 
+  width: 320px;
+  margin: 12px 0; 
+  padding: 18px; 
+  border-radius: 20px;
+  border: 2px solid #9b5cff; /* Indigo Border for visibility */
+  cursor: pointer; 
+  transition: 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.bar:hover { 
+  background: #3c005a;
+  box-shadow: var(--glow);
+  transform: scale(1.05);
+  border-color: #ff4fd8;
+}
+
+.bar-hint {
+    font-size: 14px;
+    opacity: 0.8;
+    color: #ff9eee;
+}
+
+.reveal { 
+    display: none; 
+    color: #ffffff; 
+    font-weight: bold; 
+    font-size: 18px;
+    text-shadow: 0 0 10px #ff4fd8;
+    animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes popIn {
+    from { transform: scale(0.5); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* --- 3D ENVELOPE --- */
+.envelope-wrapper {
+  position: relative; width: 300px; height: 250px;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+}
+.open-btn-text {
+  margin-bottom: 15px; font-weight: 600; color: #ff9eee;
+  text-shadow: var(--glow); animation: fadeHint 1.5s infinite;
+}
+@keyframes fadeHint { 0%, 100% { opacity: 0.4; transform: scale(0.9); } 50% { opacity: 1; transform: scale(1.1); } }
+
+.envelope {
+  position: relative; width: 200px; height: 130px;
+  background: #ff5fd7; border-radius: 0 0 10px 10px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.6); cursor: pointer; z-index: 10;
+}
+.envelope::before {
+  content: ""; position: absolute; top: 0; left: 0;
+  border-left: 100px solid transparent; border-right: 100px solid transparent;
+  border-top: 80px solid #ff85e1; transform-origin: top; transition: 0.8s; z-index: 11;
+}
+.envelope.open::before { transform: rotateX(180deg); opacity: 0.8; }
+
+.paper {
+  position: absolute; bottom: 20px; width: 180px; height: 100px;
+  background: #fff; color: #333; padding: 25px; border-radius: 10px;
+  transition: 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 8; opacity: 0; box-shadow: 0 0 30px rgba(255,255,255,0.4);
+}
+.envelope.open + .paper {
+  opacity: 1; transform: translateY(-165px) scale(1.15);
+  width: 330px; height: auto; min-height: 280px; z-index: 20;
+}
+
+.note-text { font-size: 16px; line-height: 1.7; color: #1a002b; font-weight: 600; }
+
+button {
+  background: linear-gradient(45deg, #ff4fd8, #9b5cff);
+  border: none; padding: 15px 45px; color: white;
+  border-radius: 50px; font-weight: 600; cursor: pointer;
+  box-shadow: var(--glow); transition: 0.3s;
+}
+button:hover { transform: scale(1.1); filter: brightness(1.2); }
+</style>
+</head>
+
+<body>
+
+<div class="center" id="s1">
+  <div style="font-size:80px; filter: drop-shadow(0 0 20px #ff4fd8);">🥹💜</div>
+  <h2 style="text-shadow: var(--glow); font-size: 28px;">Hey Beautiful</h2>
+  <button onclick="startApp()">Open My Heart</button>
+</div>
+
+<div class="center hidden" id="s2">
+  <div class="loader-card" id="loaderCard">
+    <h3 id="loaderTitle">Analyzing Cuteness...</h3>
+    <div class="loader-box"><div class="loader" id="loader"></div></div>
+    <div id="warn" class="hidden warning-pulse">⚠ CRITICAL: TOO CUTE! ⚠</div>
+  </div>
+</div>
+
+<div class="center hidden" id="s3">
+  <h3 style="margin-bottom:20px; text-shadow: var(--glow);">Tap to reveal 💖</h3>
+  
+  <div class="bar" onclick="reveal(this)">
+    <span class="bar-hint"></span>
+    <div class="reveal">noore jahan✨</div>
+  </div>
+  
+  <div class="bar" onclick="reveal(this)">
+    <span class="bar-hint"></span>
+    <div class="reveal">Meri Jane jahan💗</div>
+  </div>
+  
+  <div class="bar" onclick="reveal(this)">
+    <span class="bar-hint"></span>
+    <div class="reveal">ambrada noor🌸</div>
+  </div>
+  
+  <div class="bar" onclick="reveal(this)">
+    <span class="bar-hint"></span>
+    <div class="reveal">Meri hoor😍</div>
+  </div>
+  
+  <div class="bar" onclick="reveal(this)">
+    <span class="bar-hint"></span>
+    <div class="reveal">Mera chanda🌙</div>
+  </div>
+
+  <button onclick="goNote()" style="margin-top: 30px;">See more</button>
+</div>
+
+<div class="center hidden" id="s4">
+  <div class="envelope-wrapper">
+    <div class="open-btn-text" id="openHint">Open Envelope 💌</div>
+    <div class="envelope" id="env" onclick="openMe()"></div>
+    <div class="paper" id="paper">
+      <div class="note-text" id="typewriter"></div>
+    </div>
+  </div>
+</div>
+
+<div class="center hidden" id="s5">
+  <h2 style="text-shadow: var(--glow); font-size: 28px;">You'll always be special to me 💕</h2>
+  <div style="font-size:95px; margin-top:30px; filter: drop-shadow(0 0 20px #ff4fd8);">🐧💞✨</div>
+</div>
+
+<script>
+// Hearts logic remains same
+setInterval(() => {
+  const h = document.createElement('div');
+  h.className = 'heart';
+  h.style.left = Math.random() * 100 + '%';
+  h.innerHTML = ['💖','💜','💗','💕','💞'][Math.floor(Math.random()*5)];
+  h.style.animationDuration = (Math.random() * 3 + 4) + 's';
+  document.body.appendChild(h);
+  setTimeout(() => h.remove(), 6000);
+}, 400);
+
+function startApp() {
+  document.getElementById('s1').classList.add('hidden');
+  document.getElementById('s2').classList.remove('hidden');
+  let w = 0;
+  let t = setInterval(() => {
+    if(w < 82) { w += 1; } 
+    else if(w >= 82 && w < 100) {
+        document.body.classList.add('shake-screen');
+        document.getElementById('loaderTitle').innerText = "SYSTEM OVERLOAD!!";
+        w += 0.4;
+    }
+    document.getElementById('loader').style.width = w + '%';
+    if(w >= 100) {
+      clearInterval(t);
+      document.body.classList.remove('shake-screen');
+      document.getElementById('warn').classList.remove('hidden'); 
+      setTimeout(() => {
+        document.getElementById('s2').classList.add('hidden');
+        document.getElementById('s3').classList.remove('hidden');
+      }, 3500);
+    }
+  }, 30);
+}
+
+function reveal(el) { 
+    el.querySelector('.bar-hint').style.display = 'none';
+    el.querySelector('.reveal').style.display = 'block'; 
+}
+
+function goNote() { 
+    document.getElementById('s3').classList.add('hidden'); 
+    document.getElementById('s4').classList.remove('hidden'); 
+}
+
+const text = `Arika I love you so much ❤️
+
+You are my life,
+mein aapke bagair aik pal nahi jee sakta hun.
+
+And you are best best bestest
+wife / gf / best friend ever ❣️`;
+
+function openMe() {
+  const env = document.getElementById('env');
+  const hint = document.getElementById('openHint');
+  if(env.classList.contains('open')) return;
+  env.classList.add('open');
+  hint.style.display = 'none';
+  let i = 0;
+  setTimeout(() => {
+    const typer = setInterval(() => {
+      document.getElementById('typewriter').innerHTML += text[i];
+      i++;
+      if(i >= text.length) {
+        clearInterval(typer);
+        setTimeout(() => {
+          document.getElementById('s4').style.opacity = '0';
+          document.getElementById('s4').style.transition = '2.5s';
+          setTimeout(() => {
+            document.getElementById('s4').classList.add('hidden');
+            document.getElementById('s5').classList.remove('hidden');
+          }, 2500);
+        }, 4000);
+      }
+    }, 55);
+  }, 1000);
+}
+</script>
+</body>
+</html
